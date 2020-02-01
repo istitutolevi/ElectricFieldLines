@@ -20,7 +20,7 @@ namespace ElectricFieldLines
             Vector force = new Vector();
             foreach (Charge charge in Charges)
             {
-                if (new Vector(charge.Position.X - x, charge.Position.Y - y).Module() < 3)
+                if (new Vector(charge.Position.X - x, charge.Position.Y - y).Module() < 5)
                     return new Vector();
                 force += CalculateForceIn(charge, x, y);
                 charge.Force = force;

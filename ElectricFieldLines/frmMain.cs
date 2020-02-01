@@ -15,7 +15,8 @@ namespace ElectricFieldLines
 
             //PositiveChargesSystem();
             //PositiveNegativeChargesSystem();
-            OnePositiveOneNegativeChargesSystem();
+            //OnePositiveOneNegativeChargesSystem();
+            Condensator();
         }
 
         private SystemOfCharges _systemOfCharges;
@@ -51,7 +52,7 @@ namespace ElectricFieldLines
                         double startX = charge.Position.X + 5 * Math.Cos(angle);
                         double startY = charge.Position.Y + 5 * Math.Sin(angle);
 
-                        for (int j = 0; j < 50000; j++)
+                        for (int j = 0; j < 10000; j++)
                         {
                             Vector force = _systemOfCharges.CalculateForceIn(startX, startY);
                             Vector newPosition = force * .3;
@@ -83,79 +84,107 @@ namespace ElectricFieldLines
 
         private void PositiveChargesSystem()
         {
-            var planets = new Charge[3];
-            planets[0] = new Charge()
+            var charges = new Charge[3];
+            charges[0] = new Charge()
             {
                 Position = new Vector(0, 200),
                 Value = 100,
                 Color = Color.Blue
             };
 
-            planets[1] = new Charge()
+            charges[1] = new Charge()
             {
                 Position = new Vector(0, 0),
                 Value = 300,
                 Color = Color.Brown
             };
 
-            planets[2] = new Charge()
+            charges[2] = new Charge()
             {
                 Position = new Vector(100, 50),
                 Value = 3000,
                 Color = Color.Green
             };
 
-            _systemOfCharges = new SystemOfCharges(planets);
+            _systemOfCharges = new SystemOfCharges(charges);
         }
 
 
         private void PositiveNegativeChargesSystem()
         {
-            var planets = new Charge[3];
-            planets[0] = new Charge()
+            var charges = new Charge[3];
+            charges[0] = new Charge()
             {
                 Position = new Vector(0, 200),
                 Value = 100,
                 Color = Color.Blue
             };
 
-            planets[1] = new Charge()
+            charges[1] = new Charge()
             {
                 Position = new Vector(0, 0),
                 Value = 300,
                 Color = Color.Brown
             };
 
-            planets[2] = new Charge()
+            charges[2] = new Charge()
             {
                 Position = new Vector(100, 50),
                 Value = -300,
                 Color = Color.Green
             };
 
-            _systemOfCharges = new SystemOfCharges(planets);
+            _systemOfCharges = new SystemOfCharges(charges);
         }
 
 
         private void OnePositiveOneNegativeChargesSystem()
         {
-            var planets = new Charge[2];
-            planets[0] = new Charge()
+            var charges = new Charge[2];
+            charges[0] = new Charge()
             {
                 Position = new Vector(0, 0),
                 Value = 300,
                 Color = Color.Brown
             };
 
-            planets[1] = new Charge()
+            charges[1] = new Charge()
             {
                 Position = new Vector(100, 50),
                 Value = -300,
                 Color = Color.Green
             };
 
-            _systemOfCharges = new SystemOfCharges(planets);
+            _systemOfCharges = new SystemOfCharges(charges);
         }
+
+        private void Condensator()
+        {
+            const int numberOfCharges = 20;
+
+
+            var charges = new Charge[numberOfCharges];
+            for (int i = 0; i < numberOfCharges / 2; i++)
+            {
+                charges[0 + i] = new Charge()
+                {
+                    Position = new Vector(0 + 20 * i, 0),
+                    Value = 300,
+                    Color = Color.Red
+                };
+
+                charges[numberOfCharges / 2 + i] = new Charge()
+                {
+                    Position = new Vector(0 + 20 * i, 100),
+                    Value = -300,
+                    Color = Color.Blue
+                };
+
+
+            }
+            _systemOfCharges = new SystemOfCharges(charges);
+        }
+
 
     }
 }
