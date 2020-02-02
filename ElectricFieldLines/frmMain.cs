@@ -160,7 +160,7 @@ namespace ElectricFieldLines
 
         private void Condensator()
         {
-            const int numberOfCharges = 20;
+            const int numberOfCharges = 10;
 
 
             var charges = new Charge[numberOfCharges];

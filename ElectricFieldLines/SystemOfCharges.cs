@@ -23,7 +23,6 @@ namespace ElectricFieldLines
                 if (new Vector(charge.Position.X - x, charge.Position.Y - y).Module() < 5)
                     return new Vector();
                 force += CalculateForceIn(charge, x, y);
-                charge.Force = force;
             }
 
             return force;
